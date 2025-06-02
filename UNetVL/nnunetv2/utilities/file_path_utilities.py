@@ -30,6 +30,7 @@ def get_output_folder(dataset_name_or_id: Union[str, int], trainer_name: str = '
                       no_kan: bool = True) -> str:
     tmp = join(nnUNet_results, maybe_convert_to_dataset_name(dataset_name_or_id),
                convert_trainer_plans_config_to_identifier(trainer_name, plans_identifier, configuration, lstm, no_kan))
+    
     if fold is not None:
         tmp = join(tmp, f'fold_{fold}')
     return tmp

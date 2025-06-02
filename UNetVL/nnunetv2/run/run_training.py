@@ -275,7 +275,7 @@ def run_training_entry():
                          "(GPU), 'cpu' (CPU) and 'mps' (Apple M1/M2). Do NOT use this to set which GPU ID! "
                          "Use CUDA_VISIBLE_DEVICES=X nnUNetv2_train [...] instead!")
     parser.add_argument('--lstm', type=str2bool, default=True, required=False,
-                        help="Use this to specify if the model uses LSTM or not.")
+                        help="Use this to specify if the model uses Vision-LSTM or not.")
     parser.add_argument('--no_kan', type=str2bool, default=False, required=False,
                         help="Use this to specify if the model uses KAN or not.")
     

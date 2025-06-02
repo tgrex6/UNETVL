@@ -32,6 +32,17 @@ from nnunetv2.utilities.json_export import recursive_fix_for_json_export
 from nnunetv2.utilities.label_handling.label_handling import determine_num_input_channels
 from nnunetv2.utilities.plans_handling.plans_handler import PlansManager, ConfigurationManager
 from nnunetv2.utilities.utils import create_lists_from_splitted_dataset_folder
+import argparse
+
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 
 class nnUNetPredictor(object):
@@ -707,6 +718,11 @@ def predict_entry_point_modelfolder():
     parser.add_argument('--disable_progress_bar', action='store_true', required=False, default=False,
                         help='Set this flag to disable progress bar. Recommended for HPC environments (non interactive '
                              'jobs)')
+    # Added arguments
+    parser.add_argument('--lstm', type=str2bool, default=True, required=False,
+                        help="Use this to specify if the model uses Vision-LSTM or not.")
+    parser.add_argument('--no_kan', type=str2bool, default=False, required=False,
+                        help="Use this to specify if the model uses KAN or not.")
 
     print(
         "\n#######################################################################\nPlease cite the following paper "
@@ -816,6 +832,12 @@ def predict_entry_point():
     parser.add_argument('--disable_progress_bar', action='store_true', required=False, default=False,
                         help='Set this flag to disable progress bar. Recommended for HPC environments (non interactive '
                              'jobs)')
+    # Added arguments
+    parser.add_argument('--lstm', type=str2bool, default=True, required=False,
+                        help="Use this to specify if the model uses Vision-LSTM or not.")
+    parser.add_argument('--no_kan', type=str2bool, default=False, required=False,
+                        help="Use this to specify if the model uses KAN or not.")
+    
 
     print(
         "\n#######################################################################\nPlease cite the following paper "
@@ -827,7 +849,10 @@ def predict_entry_point():
     args = parser.parse_args()
     args.f = [i if i == 'all' else int(i) for i in args.f]
 
-    model_folder = get_output_folder(args.d, args.tr, args.p, args.c)
+    model_folder = get_output_folder(args.d, args.tr, args.p, args.c, args.f, args.lstm, args.no_kan)
+    print(f"Model folder: {model_folder}")
+    # end the program
+    # exit()
 
     if not isdir(args.o):
         maybe_mkdir_p(args.o)

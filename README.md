@@ -67,6 +67,17 @@ Replace the paths with your own.
 ```bash
 nnUNetv2_train DATASET_ID 3d_fullres all -tr nnUNetTrainer_unetr_lstm --lstm True --no_kan False
 
+## --lstm True: Use Vision-LSTM; False: Use Vision-Transformer
+## --no_kan True: Use MLP; False: Use Chebyshev-KAN
+```
+
+## Inference
+```bash
+nnUNetv2_train DATASET_ID 3d_fullres all -tr nnUNetTrainer_unetr_lstm --lstm True --no_kan False --val --npz
+
+nnUNetv2_find_best_configuration DATASET_ID -c 3d_fullres -f 0 1 2 3 4 -tr nnUNetTrainer_unetr_lstm --lstm True --no_kan False
+
+nnUNetv2_predict -d DATASET_ID -i INPUT_FOLDER -o OUTPUT_FOLDER -f 0 -tr nnUNetTrainer_unetr_lstm -c 3d_fullres -p nnUNetPlans
 ```
 
 
