@@ -162,12 +162,5 @@ class UNETR_LSTM(nn.Module):
 
         return output
 
-if __name__ == "__main__":
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = UNETR_LSTM(img_shape=(32, 32, 32), input_dim=1, output_dim=2,no_kan=False).to(device)
-    x = torch.randn(1, 1, 32, 32, 32).to(device)
-    out = model(x)
-    print(out.shape)
-
 
 

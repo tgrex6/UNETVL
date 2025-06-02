@@ -115,7 +115,6 @@ class Mlp(nn.Module):
 class PositionwiseFeedForward(nn.Module):
     def __init__(self, d_model=786, d_ff=2048, dropout=0.1):
         super().__init__()
-        # Torch linears have a `b` by default.
         self.w_1 = nn.Linear(d_model, d_ff)
         self.w_2 = nn.Linear(d_ff, d_model)
         self.dropout = nn.Dropout(dropout)
@@ -294,10 +293,3 @@ class UNETR(nn.Module):
         
         return output
     
-
-if __name__ == '__main__':
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = UNETR(img_shape=(64,64,32), input_dim=1, output_dim=2).to(device)
-    x = torch.randn(1, 1, 64, 64, 32).to(device)
-    y = model(x)
-    print(y.shape)
