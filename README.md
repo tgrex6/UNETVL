@@ -77,9 +77,26 @@ nnUNetv2_train DATASET_ID 3d_fullres all -tr nnUNetTrainer_unetr_lstm --lstm Tru
 
 nnUNetv2_find_best_configuration DATASET_ID -c 3d_fullres -f 0 1 2 3 4 -tr nnUNetTrainer_unetr_lstm --lstm True --no_kan False
 
-nnUNetv2_predict -d DATASET_ID -i INPUT_FOLDER -o OUTPUT_FOLDER -f 0 -tr nnUNetTrainer_unetr_lstm -c 3d_fullres -p nnUNetPlans
+nnUNetv2_predict -d DATASET_ID -i INPUT_FOLDER -o OUTPUT_FOLDER -tr nnUNetTrainer_unetr_lstm -c 3d_fullres -p nnUNetPlans --lstm True --no_kan False
 ```
+## Greatly appreciate the tremendous effort for the following projects!
 
+## Citation
+![nnUNet](https://github.com/MIC-DKFZ/nnUNet)
+![vision-lstm](https://github.com/NX-AI/vision-lstm)
+
+```
+@INPROCEEDINGS{10980966,
+  author={Guo, Xuhui and Dam, Tanmoy and Dhamdhere, Rohan and Modanwal, Gourav and Madabhushi, Anant},
+  booktitle={2025 IEEE 22nd International Symposium on Biomedical Imaging (ISBI)}, 
+  title={UNETVL: Enhancing 3D Medical Image Segmentation with Chebyshev KAN Powered Vision-LSTM}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-5},
+  keywords={Computer vision;Three-dimensional displays;Semantic segmentation;Scalability;Memory management;Information processing;Chebyshev approximation;Transformers;Convolutional neural networks;Biomedical imaging;Vision-LSTM;Chebyshev KAN;UNETVL;Semantic Segmentation;3D Medical Image Segmentation},
+  doi={10.1109/ISBI60581.2025.10980966}}
+```
 
 
 

@@ -79,6 +79,7 @@ class nnUNetPredictor(object):
         """
         This is used when making predictions with a trained model
         """
+        print('use_folds: ', use_folds)
         if use_folds is None:
             use_folds = nnUNetPredictor.auto_detect_available_folds(model_training_output_dir, checkpoint_name)
 
@@ -849,10 +850,9 @@ def predict_entry_point():
     args = parser.parse_args()
     args.f = [i if i == 'all' else int(i) for i in args.f]
 
-    model_folder = get_output_folder(args.d, args.tr, args.p, args.c, args.f, args.lstm, args.no_kan)
-    print(f"Model folder: {model_folder}")
-    # end the program
-    # exit()
+    model_folder = get_output_folder(args.d, args.tr, args.p, args.c, None, args.lstm, args.no_kan)
+    
+    
 
     if not isdir(args.o):
         maybe_mkdir_p(args.o)
