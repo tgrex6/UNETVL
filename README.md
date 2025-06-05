@@ -79,12 +79,14 @@ nnUNetv2_find_best_configuration DATASET_ID -c 3d_fullres -f 0 1 2 3 4 -tr nnUNe
 
 nnUNetv2_predict -d DATASET_ID -i INPUT_FOLDER -o OUTPUT_FOLDER -tr nnUNetTrainer_unetr_lstm -c 3d_fullres -p nnUNetPlans --lstm True --no_kan False
 ```
-## Greatly appreciate the tremendous effort for the following projects!
+## Acknowledgements
+Greatly appreciate the tremendous effort for the following projects!
+
+- [nnUNet](https://github.com/MIC-DKFZ/nnUNet)
+- [vision-lstm](https://github.com/NX-AI/vision-lstm)
+
 
 ## Citation
-![nnUNet](https://github.com/MIC-DKFZ/nnUNet)
-![vision-lstm](https://github.com/NX-AI/vision-lstm)
-
 ```
 @INPROCEEDINGS{10980966,
   author={Guo, Xuhui and Dam, Tanmoy and Dhamdhere, Rohan and Modanwal, Gourav and Madabhushi, Anant},
